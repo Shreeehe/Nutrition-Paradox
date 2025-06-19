@@ -1,6 +1,7 @@
 # Nutrition-Paradox
 A Global View on Obesity and Malnutrition.
 🧾 Project Summary: Nutrition Paradox – A Global View on Obesity and Malnutrition
+
 🌍 Overview:
 This project explores the global nutrition paradox — where obesity and malnutrition coexist across regions and populations. Using data from WHO APIs (2012–2022), the project focuses on trends by region, gender, age group, and year.
 
