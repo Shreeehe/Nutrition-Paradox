@@ -1,70 +1,55 @@
-# Nutrition-Paradox
-A Global View on Obesity and Malnutrition.
-🧾 Project Summary: Nutrition Paradox – A Global View on Obesity and Malnutrition
+# Nutrition Paradox Dashboard 🥗📊
 
-🌍 Overview:
-This project explores the global nutrition paradox — where obesity and malnutrition coexist across regions and populations. Using data from WHO APIs (2012–2022), the project focuses on trends by region, gender, age group, and year.
+This Streamlit dashboard explores the global paradox of **rising obesity and persistent malnutrition** using WHO public datasets from 2012 to 2022.
 
-📦 Data Sources:
-WHO Global Health Observatory APIs
+## 🌍 Project Summary
 
-Four datasets:
+Despite modern advancements, the world faces two extreme nutrition challenges:
 
-Adult Obesity (BMI ≥ 30)
+- **Obesity** is growing rapidly in high- and middle-income countries due to lifestyle changes and unhealthy diets.
+- **Malnutrition** still persists, especially in low-income and developing regions, impacting children and vulnerable groups.
 
-Child Obesity (BMI ≥ 2 SD)
+This project visualizes and compares these dual health burdens across countries, regions, gender, and age groups.
 
-Adult Underweight (BMI < 18.5)
+---
 
-Child Thinness (BMI < -2 SD)
+## 🚀 Features
 
-Cleaned, merged, and enriched using Python and MySQL
+### 1. Obesity Dashboard
+- Top regions and countries with highest obesity rates.
+- Gender and age-based comparisons.
+- Global trend visualization.
+- Data reliability insights using confidence intervals.
+- Countries with consistent low obesity.
 
-Exported to Power BI for interactive visualizations
+### 2. Malnutrition Dashboard
+- Most affected countries and age groups.
+- African region focus and country-specific trends.
+- Gender disparities and CI width analysis.
+- Year-wise comparison of minimum and maximum malnutrition.
+- High-risk countries monitoring.
 
-🔍 Key Transformations:
-Added Age, CI_Width, Obesity_Level, and Malnutrition_Level
+### 3. Combined Insights
+- Obesity vs malnutrition side-by-side.
+- Gender-based nutrition disparity.
+- Region-wise comparison: Africa vs Americas.
+- Countries improving in malnutrition but worsening in obesity.
+- Adult vs child trend analysis.
 
-Mapped missing Region using Country
+---
 
-Cleaned gender codes (SEX_MLE → Male, etc.)
+## 📁 Files
 
-Removed records with incomplete values
+- `final_obesity_data.csv` – Cleaned WHO data on obesity.
+- `final_malnutrition_data.csv` – Cleaned WHO data on malnutrition.
+- `app.py` – Streamlit code for dashboard.
 
-📊 Dashboard Features:
-📈 Trends: Obesity & Malnutrition over time
+---
 
-🌍 Map: Country-wise comparison
+## 📦 How to Run
 
-🧍‍♀️🧍 Gender-based breakdown
-
-📊 Top 10 countries (both obesity & malnutrition)
-
-✅ Confidence Interval width check for data reliability
-
-💡 Key Insights:
-Africa & South-East Asia show high malnutrition, especially among children
-
-Europe & Americas lead in adult obesity, especially among females
-
-Some countries (like India) show dual burden: low BMI in kids, rising obesity in adults
-
-Gender-based trends show females often have higher obesity, males slightly higher malnutrition in some regions
-
-CI width suggests some low-income nations have less consistent data, needing cautious interpretation
-
-🛠️ Tools Used:
-Python (Pandas, PyCountry)
-
-MySQL (Data Storage)
-
-Power BI (Dashboard)
-
-WHO API (Real-time Data Source)
-
-📁 Deliverables:
-final_obesity_data.csv
-
-final_malnutrition_data.csv
-
-nutrition_paradox_dashboard.pbix
+```bash
+git clone https://github.com/your-username/nutrition-paradox-dashboard.git
+cd nutrition-paradox-dashboard
+pip install -r requirements.txt
+streamlit run app.py
