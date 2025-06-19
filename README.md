@@ -38,18 +38,20 @@ This project visualizes and compares these dual health burdens across countries,
 
 ---
 
-## 📁 Files
+## Files
 
-- `final_obesity_data.csv` – Cleaned WHO data on obesity.
-- `final_malnutrition_data.csv` – Cleaned WHO data on malnutrition.
-- `app.py` – Streamlit code for dashboard.
+- `Main.ipynb` – Jupyter Notebook used to extract and preprocess data from WHO API.
+- `final_obesity_data.csv` – Cleaned obesity dataset.
+- `final_malnutrition_data.csv` – Cleaned malnutrition dataset.
+- `app.py` – Streamlit dashboard for visualizing insights.
 
 ---
 
-## 📦 How to Run
+## How to Run
+
+1. (Optional) Run `Main.ipynb` to regenerate or update data from WHO API.
+2. Launch the dashboard:
 
 ```bash
-git clone https://github.com/your-username/nutrition-paradox-dashboard.git
-cd nutrition-paradox-dashboard
 pip install -r requirements.txt
 streamlit run app.py
