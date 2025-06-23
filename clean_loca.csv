@@ -1,0 +1,45 @@
+country,lat,lon,type,obesity_rate,malnutrition_rate
+United States,39.8283,-98.5795,obesity,36.2,
+Mexico,23.6345,-102.5528,obesity,36.1,
+Turkey,38.9637,35.2433,obesity,32.1,
+Chile,-35.6751,-71.5430,obesity,28.0,
+United Kingdom,55.3781,-3.4360,obesity,27.8,
+Australia,-25.2744,133.7751,obesity,27.9,
+Canada,56.1304,-106.3468,obesity,26.8,
+Germany,51.1657,10.4515,obesity,25.0,
+France,46.2276,2.2137,obesity,24.0,
+Spain,40.4637,-3.7492,obesity,23.8,
+Italy,41.8719,12.5674,obesity,19.9,
+Brazil,-14.2350,-51.9253,obesity,20.1,
+Argentina,-38.4161,-63.6167,obesity,28.3,
+South Africa,-30.5595,22.9375,obesity,28.3,
+Egypt,26.0975,30.0444,obesity,32.0,
+Saudi Arabia,23.8859,45.0792,obesity,35.4,
+Russia,61.5240,105.3188,obesity,23.1,
+China,35.8617,104.1954,obesity,7.3,
+India,20.5937,78.9629,obesity,3.9,
+Poland,51.9194,19.1451,obesity,23.1,
+Chad,15.4542,18.7322,malnutrition,,39.9
+Central African Republic,6.6111,20.9394,malnutrition,,40.7
+Niger,17.6078,8.0817,malnutrition,,43.0
+Mali,17.5707,-3.9962,malnutrition,,35.1
+Burkina Faso,12.2383,-1.5616,malnutrition,,35.0
+Somalia,5.1521,46.1996,malnutrition,,25.3
+Afghanistan,33.9391,67.7100,malnutrition,,38.9
+South Sudan,6.8770,31.3070,malnutrition,,76.0
+Democratic Republic of Congo,-4.0383,21.7587,malnutrition,,42.7
+Sudan,12.8628,30.2176,malnutrition,,25.7
+Ethiopia,9.1450,40.4897,malnutrition,,37.9
+Yemen,15.5527,48.5164,malnutrition,,45.4
+Guinea,9.9456,-9.6966,malnutrition,,26.4
+Sierra Leone,8.4606,-11.7799,malnutrition,,26.8
+Liberia,6.4281,-9.4295,malnutrition,,32.1
+Nigeria,9.0820,8.6753,malnutrition,,32.9
+Cameroon,7.3697,12.3547,malnutrition,,32.4
+Uganda,1.3733,32.2903,malnutrition,,29.0
+Kenya,-0.0236,37.9062,malnutrition,,26.2
+Tanzania,-6.3690,34.8888,malnutrition,,31.8
+Mozambique,-18.6657,35.5296,malnutrition,,43.1
+Angola,-11.2027,17.8739,malnutrition,,38.2
+Zambia,-13.1339,27.8493,malnutrition,,35.0
+Zimbabwe,-19.0154,29.1549,malnutrition,,27.6
