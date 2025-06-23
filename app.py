@@ -1,27 +1,138 @@
 import streamlit as st
 import pandas as pd
+import random
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pydeck as pdk  # this for map overlays
 
-# ✅ Set page config first
+# Setting page config first
 st.set_page_config(page_title="Nutrition Paradox Dashboard", layout="wide")
 
-# 📥 Load data
+# Load all data
 @st.cache_data
 def load_data():
     df_obese = pd.read_csv("final_obesity_data.csv")
     df_mal = pd.read_csv("final_malnutrition_data.csv")
-    return df_obese, df_mal
+    df_map = pd.read_csv("clean_loca.csv").dropna(subset=["lat", "lon"])  #map data
+    return df_obese, df_mal, df_map
 
-df_obese, df_mal = load_data()
+df_obese, df_mal, df_map = load_data()
 
-# 🧭 Sidebar navigation
-page = st.sidebar.radio("Go to:", ["🍩 Obesity Dashboard", "🍵 Malnutrition Dashboard", "🔗 Combined Insights"])
+# Random tips and facts
+nutrition_hints = [
+    "An apple a day may help regulate blood sugar and contains heart-healthy fiber.",
+    "Eggs are a complete protein source and support muscle development.",
+    "Broccoli is rich in Vitamin C and antioxidants.",
+    "Bananas are high in potassium — great for blood pressure control.",
+    "Nuts provide healthy fats and brain-supporting Vitamin E.",
+    "Carrots improve vision with beta-carotene (Vitamin A precursor).",
+    "Garlic supports immunity and may reduce cholesterol.",
+    "Strawberries are loaded with Vitamin C and antioxidants.",
+    "Oranges help prevent scurvy and support skin health.",
+    "Brown rice has more fiber and micronutrients than white rice.",
+    "Fatty fish like salmon contain Omega-3s — good for heart and brain.",
+    "Sweet potatoes are rich in fiber and Vitamin A.",
+    "Spinach supports red blood cell health with iron and folate.",
+    "Tomatoes contain lycopene — a compound that may reduce cancer risk.",
+    "Grapes contain resveratrol, a powerful anti-aging antioxidant.",
+    "Pineapple aids digestion with bromelain enzyme.",
+    "Lentils are plant-based protein packed with fiber and B vitamins.",
+    "Milk offers calcium and Vitamin D for bone strength.",
+    "Honey has antimicrobial properties in small amounts.",
+    "Dark chocolate (70%+) may improve brain function and mood in moderation."
+]
 
-# 🌟 App Title
-st.title("🍽️ Nutrition Paradox: Obesity & Malnutrition (2012–2022)")
+obesity_tips = [
+    "Walking briskly for 30 minutes daily can burn up to 150 calories.",
+    "Replacing sugary drinks with water significantly reduces daily calorie intake.",
+    "Eating meals at consistent times helps regulate metabolism.",
+    "Avoid screen time while eating — mindful eating helps prevent overeating.",
+    "Use smaller plates to reduce portion size without feeling deprived.",
+    "Stress management (like meditation) reduces cortisol-related fat gain.",
+    "Getting 7–8 hours of sleep lowers the risk of weight gain.",
+    "Regular physical activity improves metabolism and burns excess fat.",
+    "Reducing processed food intake helps prevent unhealthy weight gain.",
+    "Tracking food intake (journaling or apps) raises awareness of eating habits.",
+    "Eating protein-rich breakfasts helps control hunger later in the day.",
+    "Strength training builds muscle, which burns more calories even at rest.",
+    "Avoid late-night snacking — metabolism slows down toward bedtime.",
+    "Drinking a glass of water before meals may reduce overeating.",
+    "Filling half your plate with vegetables helps manage calorie density.",
+    "Cutting down on salty snacks can reduce bloating and improve heart health.",
+    "Limit food delivery — home-cooked meals are usually lower in fat and sugar.",
+    "Fiber-rich foods help you feel full longer and support digestion.",
+    "Choose healthy snacks like fruit, yogurt, or nuts instead of chips or sweets.",
+    "Learning nutrition basics empowers healthier food choices daily."
+]
 
-# ------------------- 🍩 Obesity Dashboard -------------------
+# Sidebar navigation
+page = st.sidebar.radio("Go to:", ["🏠 Home", "🍩 Obesity Dashboard", "🍵 Malnutrition Dashboard", "🔗 Combined Insights"])
+
+# ------------------- 🏠 Home -------------------
+if page == "🏠 Home":
+    st.title("The Nutrition Paradox Dashboard 🍽️")
+    st.markdown("This dashboard explores the global rise of **obesity** and the persistence of **malnutrition**, using real WHO data from 2012–2022.")
+
+    # BMI Calculator
+    st.subheader("BMI Calculator")
+    col1, col2 = st.columns(2)
+    with col1:
+        height = st.number_input("Height (cm):", min_value=50.0, max_value=250.0, step=0.5)
+    with col2:
+        weight = st.number_input("Weight (kg):", min_value=10.0, max_value=300.0, step=0.5)
+
+    if height and weight:
+        bmi = weight / ((height / 100) ** 2)
+        st.success(f"Your BMI is: {bmi:.2f}")
+
+        if bmi < 18.5:
+            st.info("You are underweight.")
+        elif 18.5 <= bmi < 25:
+            st.success("You have a normal weight.")
+        elif 25 <= bmi < 30:
+            st.warning("You are overweight.")
+        else:
+            st.error("You are obese.")
+
+    # Random fixed tips
+    if "nutrition_tip" not in st.session_state:
+        st.session_state.nutrition_tip = random.choice(nutrition_hints)
+    if "obesity_tip" not in st.session_state:
+        st.session_state.obesity_tip = random.choice(obesity_tips)
+
+    st.subheader("💪 Nutrition Tip")
+    st.markdown(f"- {st.session_state.nutrition_tip}")
+
+    st.subheader("🔥 Obesity Reduction Tip")
+    st.markdown(f"- {st.session_state.obesity_tip}")
+
+    # Map for Home page only
+    df_map["color"] = df_map["type"].map({
+        "obesity": [255, 99, 71],
+        "malnutrition": [30, 144, 255]
+    })
+
+    layer = pdk.Layer(
+        "ScatterplotLayer",
+        data=df_map,
+        get_position='[lon, lat]',
+        get_fill_color='color',
+        get_radius=80000,
+        pickable=True,
+        auto_highlight=True
+    )
+
+    view_state = pdk.ViewState(latitude=10, longitude=10, zoom=1.3)
+
+    st.subheader("🌍 Global Nutrition Data: Obesity vs Malnutrition")
+    st.caption("Each dot represents a country. Red = Obesity data, Blue = Malnutrition data.")
+    st.pydeck_chart(pdk.Deck(
+        layers=[layer],
+        initial_view_state=view_state,
+        tooltip={"text": "{country} ({type})"}
+    ))
+
+# -------------------  Obesity Dashboard -------------------
 if page == "🍩 Obesity Dashboard":
     st.header("Obesity Insights")
     st.markdown("---")
