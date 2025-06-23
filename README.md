@@ -1,57 +1,71 @@
-# Nutrition Paradox Dashboard 🥗📊
+# 🥗 Nutrition Paradox Dashboard (Obesity & Malnutrition Explorer)
 
-This Streamlit dashboard explores the global paradox of **rising obesity and persistent malnutrition** using WHO public datasets from 2012 to 2022.
+This interactive **Streamlit Dashboard** explores the **global paradox** of rising **obesity** and persistent **malnutrition** using WHO datasets (2012–2022). It provides insights by country, gender, region, and age — highlighting the nutritional divide across the world.
 
-## 🌍 Project Summary
+---
 
-Despite modern advancements, the world faces two extreme nutrition challenges:
+## 🌍 Project Highlights
 
-- **Obesity** is growing rapidly in high- and middle-income countries due to lifestyle changes and unhealthy diets.
-- **Malnutrition** still persists, especially in low-income and developing regions, impacting children and vulnerable groups.
-
-This project visualizes and compares these dual health burdens across countries, regions, gender, and age groups.
+- Visualize obesity and malnutrition patterns across **countries, regions, genders, and ages**
+- Built-in **BMI calculator** for quick health checks
+- Randomized **nutrition and weight-loss tips** to educate and engage users
+- Beautiful **global map** overlay to visualize obesity and malnutrition data distribution
+- Powered by **real WHO data**, cleaned and structured.
 
 ---
 
 ## 🚀 Features
 
-### 1. Obesity Dashboard
-- Top regions and countries with highest obesity rates.
-- Gender and age-based comparisons.
-- Global trend visualization.
-- Data reliability insights using confidence intervals.
-- Countries with consistent low obesity.
+### 🏠 Home Page
+- **BMI Calculator**: Input height and weight to view health status
+- **Nutrition Tip of the Day**: One helpful daily nutrition insight
+- **Obesity Tip of the Day**: One daily advice for reducing obesity
+- **Nutrition World Map**: Interactive global view with colored dots for Obesity (🔴) and Malnutrition (🔵)
 
-### 2. Malnutrition Dashboard
-- Most affected countries and age groups.
-- African region focus and country-specific trends.
-- Gender disparities and CI width analysis.
-- Year-wise comparison of minimum and maximum malnutrition.
-- High-risk countries monitoring.
+### 🍩 Obesity Dashboard
+- Top 5 Regions & Countries by average obesity
+- India-specific obesity trend (2012–2022)
+- Gender & Age-based Obesity Averages
+- Consistently low-obesity countries
+- Data reliability analysis (CI Width)
+- Female vs Male obesity gap
+- Global obesity trend line
 
-### 3. Combined Insights
-- Obesity vs malnutrition side-by-side.
-- Gender-based nutrition disparity.
-- Region-wise comparison: Africa vs Americas.
-- Countries improving in malnutrition but worsening in obesity.
-- Adult vs child trend analysis.
+### 🍵 Malnutrition Dashboard
+- Highest malnutrition countries and age analysis
+- African region trend focus
+- Gender disparities & CI width analysis
+- Countries with increasing malnutrition
+- Year-wise min vs max comparison
 
----
-
-## Files
-
-- `Main.ipynb` – Jupyter Notebook used to extract and preprocess data from WHO API.
-- `final_obesity_data.csv` – Cleaned obesity dataset.
-- `final_malnutrition_data.csv` – Cleaned malnutrition dataset.
-- `app.py` – Streamlit dashboard for visualizing insights.
+### 🔗 Combined Insights
+- Compare obesity & malnutrition by country, region, gender, and age
+- Spot countries improving in malnutrition but worsening in obesity
 
 ---
 
-## How to Run
+## 🧾 Files
 
-1. (Optional) Run `Main.ipynb` to regenerate or update data from WHO API.
-2. Launch the dashboard:
+| File | Description |
+|------|-------------|
+| `app.py` | Final Streamlit app script |
+| `final_obesity_data.csv` | Cleaned obesity dataset |
+| `final_malnutrition_data.csv` | Cleaned malnutrition dataset |
+| `clean_loca.csv` | Country-wise lat/lon with type (obesity or malnutrition) |
+| `Main.ipynb` | Data extraction + preprocessing from WHO API |
+| `EDA.ipynb` | Data exploration and analysis |
+
+---
+
+## 💻 How to Run It Locally
 
 ```bash
+# Step 1: Clone the repository
+git clone https://github.com/your-username/nutrition-paradox-dashboard.git
+cd nutrition-paradox-dashboard
+
+# Step 2: Install requirements
 pip install -r requirements.txt
+
+# Step 3: Launch Streamlit app
 streamlit run app.py
